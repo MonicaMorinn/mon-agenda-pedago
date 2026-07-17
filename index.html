@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Agenda Pédago — Planner 2026-2027</title>
+  
+  <!-- Fonts : Caveat (handwriting) + Quicksand (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- External libraries for export -->
+  <script src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/docx@9.7.1/dist/index.umd.cjs"></script>
+  
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <!-- HEADER / BRANDING (no-print) -->
+    <div class="brand no-print">
+      <h1>Mon Agenda Pédago</h1>
+      <p>Planner imprimable · Année scolaire 2026–2027 · DSFS Moncton</p>
+    </div>
+
+    <!-- SETTINGS CARD (no-print) -->
+    <div class="card no-print">
+      <h2>Réglages</h2>
+      <p class="sub">Aucun nom, école ou en-tête ne sera imprimé — ces réglages déterminent seulement quels événements afficher.</p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <div class="field">
+          <label>Niveau principal</label>
+          <div class="niveaux" id="niveau-options">
+            <div class="pill active" data-val="6">6e année</div>
+            <div class="pill" data-val="7">7e année</div>
+            <div class="pill" data-val="8">8e année</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Année scolaire</label>
+          <div class="pill active" style="cursor:default;">2026–2027</div>
+        </div>
+      </div>
+      <p class="hint">École maternelle–8e : les événements des 6e, 7e et 8e (ex. rentrée progressive) apparaissent tous, peu importe le niveau principal choisi.</p>
+    </div>
+
+    <!-- CUSTOMIZATION CARD (no-print) -->
+    <div class="card no-print">
+      <h2>Personnalisation</h2>
+      <p class="sub">Modifiez librement — l'aperçu juste en dessous se met à jour en direct, comme votre planif 25-26.</p>
+      
+      <div class="field" style="margin-bottom:16px;">
+        <label>Emplacement des notes</label>
+        <div class="niveaux" id="notes-options">
+          <div class="pill active" data-val="sous">Sous chaque journée</div>
+          <div class="pill" data-val="cote">Sur le côté</div>
+          <div class="pill" data-val="deux">Les deux</div>
+        </div>
+      </div>
+      
+      <div class="field" style="margin-bottom:16px;">
+        <label>Mini-calendrier mensuel (côté, semaine surlignée)</label>
+        <div class="niveaux" id="minical-options">
+          <div class="pill active" data-val="oui">Afficher</div>
+          <div class="pill" data-val="non">Ne pas afficher</div>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label>Palette de couleurs</label>
+        <div class="niveaux" id="palette-options">
+          <div class="pill active" data-val="pastel">Pastel (comme ma planif 25-26)</div>
+          <div class="pill" data-val="perso">Personnalisée</div>
+          <div class="pill" data-val="nb">Noir et blanc seulement</div>
+        </div>
+        <div id="perso-controls" style="display:none;gap:10px;margin-top:10px;flex-wrap:wrap;">
+          <div class="field"><label>1</label><input type="color" id="c1" value="#e3d9f5"></div>
+          <div class="field"><label>2</label><input type="color" id="c2" value="#fbdccb"></div>
+          <div class="field"><label>3</label><input type="color" id="c3" value="#cbe8de"></div>
+          <div class="field"><label>4</label><input type="color" id="c4" value="#faeab8"></div>
+          <div class="field"><label>5</label><input type="color" id="c5" value="#f6d3d9"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW CARD -->
+    <div class="card">
+      <h2 class="no-print">Aperçu — semaine du 7 septembre 2026</h2>
+      <p class="sub no-print">Vrai horaire scolaire : une seule colonne d'heures partagée, récré/dîner en lignes horizontales.</p>
+      <div id="preview-shell"><div id="preview-target"></div></div>
+    </div>
+
+    <!-- ACTION BUTTONS (no-print) -->
+    <div class="actions no-print">
+      <button class="btn ghost" id="load-btn">📂 Reprendre un enregistrement</button>
+      <input type="file" id="load-file" accept=".json">
+      <button class="btn" id="gen-btn">Générer les 42 semaines complètes ↓</button>
+    </div>
+
+    <!-- EXPORT CARD (hidden until generation) -->
+    <div class="card no-print" id="export-card" style="display:none;text-align:center;">
+      <h2 style="text-align:center;">Enregistrer &amp; exporter</h2>
+      <div class="export-row"><button class="btn" id="save-btn">💾 Enregistrer mon planner (.json)</button></div>
+      <div class="export-row" style="margin-top:10px;">
+        <button class="btn ghost" id="print-btn">🖨️ Imprimer / PDF</button>
+        <button class="btn ghost" id="docx-btn">📄 Exporter en Word (.docx natif)</button>
+        <button class="btn ghost" id="png-btn">🖼️ Exporter en PNG (Canva)</button>
+      </div>
+    </div>
+
+    <!-- FULL YEAR RENDER TARGET -->
+    <div id="full-year-target"></div>
+  </div>
+
+  <!-- Load scripts in order -->
+  <script src="calendar.js"></script>
+  <script src="script.js"></script>
+  <script src="export.js"></script>
+</body>
+</html>
