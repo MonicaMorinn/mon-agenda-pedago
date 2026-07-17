@@ -49,7 +49,7 @@
     <!-- CUSTOMIZATION CARD (no-print) -->
     <div class="card no-print">
       <h2>Personnalisation</h2>
-      <p class="sub">Modifiez librement — l'aperçu juste en dessous se met à jour en direct, comme votre planif 25-26.</p>
+      <p class="sub">Modifiez librement — l'aperçu juste en dessous se met à jour en direct.</p>
       
       <div class="field" style="margin-bottom:16px;">
         <label>Emplacement des notes</label>
@@ -61,7 +61,7 @@
       </div>
       
       <div class="field" style="margin-bottom:16px;">
-        <label>Mini-calendrier mensuel (côté, semaine surlignée)</label>
+        <label>Mini-calendrier mensuel (bas de la page jeudi-vendredi)</label>
         <div class="niveaux" id="minical-options">
           <div class="pill active" data-val="oui">Afficher</div>
           <div class="pill" data-val="non">Ne pas afficher</div>
@@ -71,9 +71,9 @@
       <div class="field">
         <label>Palette de couleurs</label>
         <div class="niveaux" id="palette-options">
-          <div class="pill active" data-val="pastel">Pastel (comme ma planif 25-26)</div>
+          <div class="pill active" data-val="pastel">Pastel</div>
           <div class="pill" data-val="perso">Personnalisée</div>
-          <div class="pill" data-val="nb">Noir et blanc seulement</div>
+          <div class="pill" data-val="nb">Noir et blanc</div>
         </div>
         <div id="perso-controls" style="display:none;gap:10px;margin-top:10px;flex-wrap:wrap;">
           <div class="field"><label>1</label><input type="color" id="c1" value="#e3d9f5"></div>
@@ -88,7 +88,7 @@
     <!-- PREVIEW CARD -->
     <div class="card">
       <h2 class="no-print">Aperçu — semaine du 7 septembre 2026</h2>
-      <p class="sub no-print">Vrai horaire scolaire : une seule colonne d'heures partagée, récré/dîner en lignes horizontales.</p>
+      <p class="sub no-print">Pages sans headers de semaine — structure papier authentique.</p>
       <div id="preview-shell"><div id="preview-target"></div></div>
     </div>
 
@@ -114,7 +114,8 @@
     <div id="full-year-target"></div>
   </div>
 
-  <!-- Load scripts in order -->
+  <!-- Load scripts in correct order -->
+  <script src="calendar-dsfs-2026-2027.js"></script>
   <script src="calendar.js"></script>
   <script src="script.js"></script>
   <script src="export.js"></script>
