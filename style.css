@@ -42,8 +42,8 @@ body {
 }
 
 /* ============================================================================
-   BRANDING / HEADER
-   ============================================================================ */
+    BRANDING / HEADER
+    ============================================================================ */
 .brand {
   text-align: center;
   margin-bottom: 28px;
@@ -68,8 +68,8 @@ body {
 }
 
 /* ============================================================================
-   CARDS (Settings, Customization, etc.)
-   ============================================================================ */
+    CARDS (Settings, Customization, etc.)
+    ============================================================================ */
 .card {
   background: var(--paper);
   border: 2px solid var(--ink);
@@ -100,8 +100,8 @@ body {
 }
 
 /* ============================================================================
-   FORM ELEMENTS: Pills, Fields, Labels
-   ============================================================================ */
+    FORM ELEMENTS: Pills, Fields, Labels
+    ============================================================================ */
 .niveaux {
   display: flex;
   gap: 8px;
@@ -167,8 +167,8 @@ input[type="color"]:hover {
 }
 
 /* ============================================================================
-   BUTTONS
-   ============================================================================ */
+    BUTTONS
+    ============================================================================ */
 .btn {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -223,8 +223,8 @@ input[type="file"] {
 }
 
 /* ============================================================================
-   PREVIEW SHELL & PAGE STRUCTURE
-   ============================================================================ */
+    PREVIEW SHELL & PAGE STRUCTURE
+    ============================================================================ */
 #preview-shell {
   background: #ddd;
   border-radius: var(--radius);
@@ -246,14 +246,6 @@ input[type="file"] {
   page-break-after: always;
 }
 
-.week-title {
-  font-family: 'Caveat', cursive;
-  font-size: 26px;
-  margin: 0 0 8px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
 .month-label {
   font-size: 12px;
   font-weight: 700;
@@ -270,15 +262,26 @@ input[type="file"] {
   height: 10.55in;
 }
 
+.page-body-thf {
+  flex-wrap: wrap;
+}
+
+.page-body-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* ============================================================================
-   HORAIRE TABLE
-   One table, shared hour column, divider rows for breaks
-   ============================================================================ */
+    HORAIRE TABLE
+    One table, shared hour column (Mon-Wed), no hour column (Thu-Fri)
+    ============================================================================ */
 table.horaire {
   border-collapse: collapse;
   flex: 1;
   table-layout: fixed;
-  height: 100%;
+  height: auto;
   border: 1px solid var(--ink);
 }
 
@@ -347,6 +350,10 @@ table.horaire col.heure-col {
   background: #fff;
 }
 
+.case-cell-large {
+  height: 1.35in;
+}
+
 .case-cell textarea {
   width: 100%;
   height: 100%;
@@ -384,8 +391,8 @@ table.horaire col.heure-col {
 }
 
 /* ============================================================================
-   TEXTAREA
-   ============================================================================ */
+    TEXTAREA
+    ============================================================================ */
 textarea {
   font-family: 'Quicksand', sans-serif;
   border: none;
@@ -400,9 +407,9 @@ textarea:focus {
 }
 
 /* ============================================================================
-   SIDE COLUMN (Côté)
-   Mini calendar, side notes, clinics, surveillance
-   ============================================================================ */
+    SIDE COLUMN (Côté) — JEUDI-VENDREDI RIGHT SIDE
+    Mini calendar, side notes, clinics
+    ============================================================================ */
 .side-col {
   width: 2.3in;
   border: 1px solid var(--ink);
@@ -416,6 +423,7 @@ textarea:focus {
 .side-block {
   border-top: 1px solid var(--ink);
   padding: 6px 8px;
+  flex-shrink: 0;
 }
 
 .side-block:first-child {
@@ -443,21 +451,22 @@ textarea:focus {
   );
 }
 
-.side-block.spacer {
-  flex: 1;
-  border-top: none;
-  padding: 0;
-}
-
 .side-block.minical-block {
   border-top: 1px solid var(--ink);
   margin-top: auto;
   padding: 4px 6px 6px;
+  flex-shrink: 0;
 }
 
 /* ============================================================================
-   SURVEILLANCE TABLE
-   ============================================================================ */
+    SURVEILLANCE TABLE (Bottom of Thu-Fri page)
+    ============================================================================ */
+.surv-block {
+  border-top: 1px solid var(--ink);
+  padding: 6px 8px !important;
+  flex-shrink: 0;
+}
+
 table.surv-table {
   width: 100%;
   border-collapse: collapse;
@@ -484,6 +493,7 @@ table.surv-table td:first-child {
   font-weight: 700;
   white-space: nowrap;
   width: 0.55in;
+  font-size: 8px;
 }
 
 .surv-input {
@@ -503,8 +513,8 @@ table.surv-table td:first-child {
 }
 
 /* ============================================================================
-   MINI CALENDAR
-   ============================================================================ */
+    MINI CALENDAR
+    ============================================================================ */
 .minical {
   padding: 0;
 }
@@ -549,15 +559,15 @@ table.surv-table td:first-child {
 }
 
 /* ============================================================================
-   UTILITY CLASSES
-   ============================================================================ */
+    UTILITY CLASSES
+    ============================================================================ */
 .no-print {
   display: block;
 }
 
 /* ============================================================================
-   PRINT MEDIA QUERIES
-   ============================================================================ */
+    PRINT MEDIA QUERIES
+    ============================================================================ */
 @media print {
   body {
     background: #fff;
@@ -595,8 +605,8 @@ table.surv-table td:first-child {
 }
 
 /* ============================================================================
-   RESPONSIVE (Small devices)
-   ============================================================================ */
+    RESPONSIVE (Small devices)
+    ============================================================================ */
 @media (max-width: 768px) {
   .wrap {
     padding: 20px 12px 50px;
